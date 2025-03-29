@@ -2,7 +2,6 @@ package com.example.library_crud.model;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 

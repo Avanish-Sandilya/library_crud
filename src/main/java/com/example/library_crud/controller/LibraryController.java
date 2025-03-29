@@ -1,6 +1,7 @@
 package com.example.library_crud.controller;
 import com.example.library_crud.model.Library;
 import com.example.library_crud.service.LibraryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +25,12 @@ public class LibraryController {
     }
 
     @PostMapping
-    public Library addBook(@RequestBody Library library){
+    public Library addBook(@Valid @RequestBody Library library){
         return libraryService.addBook(library);
     }
 
     @PutMapping("/{id}")
-    public Library updateBook(@PathVariable Long id, @RequestBody Library bookDetails){
+    public Library updateBook(@PathVariable Long id, @Valid @RequestBody Library bookDetails){
         return libraryService.updateBook(id,bookDetails);
     }
 

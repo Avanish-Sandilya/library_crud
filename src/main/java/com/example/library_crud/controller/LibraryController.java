@@ -14,7 +14,7 @@ public class LibraryController {
     private LibraryService libraryService;
 
     @GetMapping
-    public List<Library> getBooks(@RequestParam String name){
+    public List<Library> getBooks(@RequestParam (required = false) String name){
         return libraryService.getBooks(name);
     }
 

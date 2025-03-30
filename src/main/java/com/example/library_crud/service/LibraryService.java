@@ -17,6 +17,7 @@ public class LibraryService {
     @Autowired
     private LibraryRepository libraryRepository;
 
+    //get list of all books or search by name if name provided
     public List<LibraryResponseDTO> getBooks(Optional<String> bookName) {
         return (bookName.isPresent() ? libraryRepository.findByBookNameContainingIgnoreCase(bookName.get()) : libraryRepository.findAll())
                 .stream()
@@ -24,11 +25,13 @@ public class LibraryService {
                 .collect(Collectors.toList());
     }
 
+    //Search book by id
     public Optional<LibraryResponseDTO> getBookById(Long id) {
         return libraryRepository.findById(id)
                 .map(book-> new LibraryResponseDTO(book.getId(), book.getBookName(), book.getAuthor(), book.getYear()));
     }
 
+    //adding book
     public LibraryResponseDTO addBook(LibraryRequestDTO requestDTO) {
         Library book=new Library();
         book.setBookName(requestDTO.getBookName());
@@ -39,6 +42,7 @@ public class LibraryService {
         return new LibraryResponseDTO(savedBook.getId(),savedBook.getBookName(),savedBook.getAuthor(),savedBook.getYear());
     }
 
+    //update existing book details
     public LibraryResponseDTO updateBook(Long id, LibraryRequestDTO requestDTO) {
         Library book = libraryRepository.findById(id).orElseThrow(()->new RuntimeException("Book not found"));
         book.setBookName(requestDTO.getBookName());
@@ -49,6 +53,7 @@ public class LibraryService {
         return new LibraryResponseDTO(updateBook.getId(), updateBook.getBookName(), updateBook.getAuthor(), updateBook.getYear());
     }
 
+    // delete book
     public void deleteBook(Long id) {
         libraryRepository.deleteById(id);
     }

@@ -9,6 +9,18 @@ public class LibraryRequestDTO {
     @Size(min = 2, message = "Book name must contain at least 2 letters")
     private String bookName;
 
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     @NotBlank(message = "Author name cannot be blank")
     private String author;
 

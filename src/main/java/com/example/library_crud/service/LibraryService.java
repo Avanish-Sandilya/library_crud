@@ -17,8 +17,8 @@ public class LibraryService {
     @Autowired
     private LibraryRepository libraryRepository;
 
-    public List<LibraryResponseDTO> getBooks(Optional<String> name) {
-        return (name.isPresent() ? libraryRepository.findByNameContainingIgnoreCase(name.get()) : libraryRepository.findAll())
+    public List<LibraryResponseDTO> getBooks(Optional<String> bookName) {
+        return (bookName.isPresent() ? libraryRepository.findByBookNameContainingIgnoreCase(bookName.get()) : libraryRepository.findAll())
                 .stream()
                 .map(book -> new LibraryResponseDTO(book.getId(), book.getBookName(), book.getAuthor(), book.getYear()))
                 .collect(Collectors.toList());

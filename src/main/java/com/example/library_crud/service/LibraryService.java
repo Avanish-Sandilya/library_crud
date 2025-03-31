@@ -31,7 +31,7 @@ public class LibraryService {
                 .map(book-> new LibraryResponseDTO(book.getId(), book.getBookName(), book.getAuthor(), book.getYear()));
     }
 
-    //adding book
+    //adding new book
     public LibraryResponseDTO addBook(LibraryRequestDTO requestDTO) {
         Library book=new Library();
         book.setBookName(requestDTO.getBookName());
